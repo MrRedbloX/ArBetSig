@@ -15,21 +15,28 @@ async def get_odds_from():
             title += sub_title.text
         title = title.replace('\xa0', ' ')
         return f"{title}|"
+
     def event_details(html):
         details = ""
         for detail in html.find('div', {'class': 'MatchDetails'}).find('div', {'class': 'BreadcrumbsLinks'}).find('ul', {'class': 'BreadMenu'}).findAll('li'):
             details += f"{details_text(detail)} - "
         return details
+
     def odd_class_text(html):
         return html.find('a').find('span', {'class': 'Odds'}).findAll('span')[-1].text
+
     def details_text(html):
         return html.find('a').find('span').text
+
     def clean_event(text):
         return text[0:len(event)-3]  #Removing last "-"
+
     def odds_type(html):
         return tuple(html.find('div', {'class': 'BetType'}).find('ol').findAll('li'))
+
     def odd_draw_text(html):
         return 0 if 'BookieDisabled' in html.span['class'] else odd_class_text(draw)
+
     def bookie_name(html):
         return html.find('a').find('span', {'class': 'BookieLogo BL'}).text
 
