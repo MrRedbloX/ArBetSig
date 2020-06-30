@@ -1,0 +1,65 @@
+extends main
+
+block body
+  body(onload='routine()')
+    header
+      h1 Arbitrage Betting Signals
+      a.freeze#switch_btn Freeze
+      
+    .content
+      table.table.table-striped.table-bordered.table-responsive-lg
+        thead.thead-dark#head_bets
+        tbody#body_bets
+        
+    footer
+      a(href="https://www.beatingbetting.co.uk/matched-betting-tips/arbitrage-betting" target="_blank") Learn More
+      
+  script.
+    var inter = undefined
+    var switch_ = false
+    
+    function routine() {
+      load_bets()
+      start()
+      binder()
+    }
+    
+    function start() {
+      inter = setInterval(load_bets, 200)
+    }
+    
+    function stop() {
+      clearInterval(inter)
+    }
+    
+    function binder() {
+      $("#switch_btn").click(function(){
+        if(switch_) {
+          start()
+          $("#switch_btn").addClass('freeze').removeClass('live').html('Freeze')
+        }
+        else {
+          stop()
+          $("#switch_btn").addClass('live').removeClass('freeze').html('Live')
+        }
+        switch_ = !switch_
+      })
+    }
+    
+    function load_bets() {
+      $.get('/get_bets', (bets) => {
+        $('#head_bets').empty()
+        $('#body_bets').empty()
+        tr_header = $('#head_bets').append('<tr>')
+        tr_header.append(`<th scope='col'>${bets.headers[0]}</th>`)
+        for(content of bets.body) tr_header.append(`<th scope='col'>${content[0]}</th>`)
+        $('#head_bets').append('</tr>')
+        headers = bets.headers.slice(1, bets.headers.length)
+        for(index in headers){
+          tr_body = $('#body_bets').append('<tr>')
+          tr_body.append(`<th>${headers[index]}</th>`)
+          for(content of bets.body) tr_body.append(`<td>${content[(parseInt(index)+1).toString()]}</td>`)
+          $('#body_bets').append('</tr>')
+        }
+      })
+    }

@@ -1,0 +1,134 @@
+@import url('https://fonts.google.com/specimen/Roboto+Condensed');
+
+html, body{
+  font-family: 'Roboto Condensed', sans-serif;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #fcfcfc;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+header {
+  padding: 1.3rem;
+  text-align: center;
+  width: 100%;
+  height: 15%;
+}
+
+header h1 {
+  padding-bottom: 0.5rem;
+}
+
+#switch_btn {
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  padding: 0.5rem 2rem;
+  text-decoration: none;
+  transition: background 500ms ease;
+  color: #333;
+}
+
+#switch_btn.freeze:hover {
+  cursor: pointer;
+  background: rgba(10, 10, 100, 0.2);
+}
+
+#switch_btn.live:hover {
+  cursor: pointer;
+  background: rgba(100, 10, 10, 0.2);
+}
+
+.freeze {
+  background: #e0edff;
+}
+
+.live {
+  background: #ffd4d4;
+}
+
+.content{
+  overflow-y: auto;
+  overflow-x: auto;
+  margin: auto;
+  padding: 2rem;
+  width: 100%;
+  height: 70%;
+}
+
+.content table{
+  box-shadow: 30px 0px 40px rgba(0, 0, 0, 0.1),
+    -30px 0px 40px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  height: 15%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+footer a {
+  font-size: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  padding: 0.75rem 2.25rem;
+  text-decoration: none;
+  transition: background 500ms ease;
+  color: #333;
+}
+
+footer a:hover{
+  background: rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: #333;
+}
+
+@media(max-width: 700px) {
+  th {
+    font-size: 0.9rem;
+  }
+
+  td {
+    font-size: 0.8rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  footer a {
+    font-size: 1.5rem;
+  }
+}
+
+::-webkit-scrollbar{
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+  background-color: rgba(211, 211, 211, 0.4);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background-color: rgba(192, 192, 192, 0.5);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}

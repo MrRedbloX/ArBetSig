@@ -1,0 +1,8 @@
+#virtual env
+*.cfg
+/Lib/*
+/Scripts/*
+
+#cache
+/__pycache__/*
+/py/__pycache__/*
