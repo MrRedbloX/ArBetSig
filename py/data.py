@@ -40,19 +40,17 @@ async def get_odds_from():
     def bookie_name(html):
         return html.find('a').find('span', {'class': 'BookieLogo BL'}).text
 
-    print("Launching browser...")
-    browser = await launch()
-    print("Creating new page...")
+    browser = await launch({
+        'args': [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ]
+    })
     page = await browser.newPage()
-    print("Fetching page...")
     await page.goto(cfg['website'])
-    print("Waiting for rendering...")
     await page.waitForSelector('ul.MatchesList')
-    print("Getting selector...")
     raw = await page.querySelectorEval('ul.MatchesList', '(elt) => elt.outerHTML')
-    print("Closing browser...")
     await browser.close()
-    print("Done.")
     soup = bs(raw, features='lxml')
     matches = []
     for match in soup.find('ul', {'class': 'MatchesList'}):
